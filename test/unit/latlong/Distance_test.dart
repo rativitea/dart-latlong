@@ -3,6 +3,7 @@ import 'package:test/test.dart';
 
 import 'package:latlong/latlong.dart';
 // import 'package:logging/logging.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' as google_maps;
 
 // Browser
 // import "package:console_log_handler/console_log_handler.dart";
@@ -24,15 +25,15 @@ main() {
 
         test('> Distance to the same point is 0', () {
             final Distance compute = new Distance();
-            final LatLng p = new LatLng(0.0, 0.0);
+            final google_maps.LatLng p = new google_maps.LatLng(0.0, 0.0);
 
             expect(compute.distance(p, p), equals(0));
         }); // end of 'Simple distance' test
 
         test('> Distance between 0 and 90.0 is around 10.000km', () {
             final Distance distance = new Distance();
-            final LatLng p1 = new LatLng(0.0, 0.0);
-            final LatLng p2 = new LatLng(90.0, 0.0);
+            final google_maps.LatLng p1 = new google_maps.LatLng(0.0, 0.0);
+            final google_maps.LatLng p2 = new google_maps.LatLng(90.0, 0.0);
 
             // no rounding
             expect(distance(p1, p2) ~/ 1000 , equals(10001));
@@ -47,16 +48,16 @@ main() {
 
         test('> Distance between 0 and 90.0 is 10001.96572931165 km ', () {
             final Distance distance = new Distance(roundResult: false);
-            final LatLng p1 = new LatLng(0.0, 0.0);
-            final LatLng p2 = new LatLng(90.0, 0.0);
+            final google_maps.LatLng p1 = new google_maps.LatLng(0.0, 0.0);
+            final google_maps.LatLng p2 = new google_maps.LatLng(90.0, 0.0);
 
             expect(distance.as(LengthUnit.Kilometer,p1, p2), equals(10001.96572931165));
         }); // end of 'Round' test
 
         test('> distance between 0,-180 and 0,180 is 0', () {
             final Distance distance = new Distance();
-            final LatLng p1 = new LatLng(0.0, -180.0);
-            final LatLng p2 = new LatLng(0.0, 180.0);
+            final google_maps.LatLng p1 = new google_maps.LatLng(0.0, -180.0);
+            final google_maps.LatLng p2 = new google_maps.LatLng(0.0, 180.0);
 
             expect(distance(p1, p2), 0);
 
@@ -66,10 +67,10 @@ main() {
             test('> Test 1', () {
                 final Distance distance = new Distance();
 
-                expect(distance(new LatLng(52.518611,13.408056),new LatLng(51.519475,7.46694444)),422592);
+                expect(distance(new google_maps.LatLng(52.518611,13.408056),new google_maps.LatLng(51.519475,7.46694444)),422592);
 
                 expect(distance.as(LengthUnit.Kilometer,
-                    new LatLng(52.518611,13.408056),new LatLng(51.519475,7.46694444)),423);
+                    new google_maps.LatLng(52.518611,13.408056),new google_maps.LatLng(51.519475,7.46694444)),423);
             });
 
         }); // End of 'Vincenty' group
@@ -78,7 +79,7 @@ main() {
             test('> Test 1', () {
                 final Distance distance = new Distance(calculator: const Haversine());
 
-                expect(distance(new LatLng(52.518611,13.408056),new LatLng(51.519475,7.46694444)),421786.0);
+                expect(distance(new google_maps.LatLng(52.518611,13.408056),new google_maps.LatLng(51.519475,7.46694444)),421786.0);
             });
         }); // End of 'Haversine' group
     });
@@ -89,35 +90,35 @@ main() {
 
         test('bearing to the same point is 0 degree',(){
             final Distance distance = const Distance();
-            final LatLng p = new LatLng(0.0, 0.0);
+            final google_maps.LatLng p = new google_maps.LatLng(0.0, 0.0);
             expect(distance.bearing(p, p), equals(0));
         });
 
         test('bearing between 0,0 and 90,0 is 0 degree',(){
             final Distance distance = const Distance();
-            final LatLng p1 = new LatLng(0.0, 0.0);
-            final LatLng p2 = new LatLng(90.0, 0.0);
+            final google_maps.LatLng p1 = new google_maps.LatLng(0.0, 0.0);
+            final google_maps.LatLng p2 = new google_maps.LatLng(90.0, 0.0);
             expect(distance.bearing(p1, p2), equals(0));
         });
 
         test('bearing between 0,0 and -90,0 is 180 degree',(){
             final Distance distance = const Distance();
-            final LatLng p1 = new LatLng(0.0, 0.0);
-            final LatLng p2 = new LatLng(-90.0, 0.0);
+            final google_maps.LatLng p1 = new google_maps.LatLng(0.0, 0.0);
+            final google_maps.LatLng p2 = new google_maps.LatLng(-90.0, 0.0);
             expect(distance.bearing(p1, p2), equals(180));
         });
 
         test('bearing between 0,-90 and 0,90 is -90 degree',(){
             final Distance distance = const Distance();
-            final LatLng p1 = new LatLng(0.0, -90.0);
-            final LatLng p2 = new LatLng(0.0, 90.0);
+            final google_maps.LatLng p1 = new google_maps.LatLng(0.0, -90.0);
+            final google_maps.LatLng p2 = new google_maps.LatLng(0.0, 90.0);
             expect(distance.bearing(p1, p2), equals(90));
         });
 
         test('bearing between 0,-180 and 0,180 is -90 degree',(){
             final Distance distance = const Distance();
-            final LatLng p1 = new LatLng(0.0, -180.0);
-            final LatLng p2 = new LatLng(0.0, 180.0);
+            final google_maps.LatLng p1 = new google_maps.LatLng(0.0, -180.0);
+            final google_maps.LatLng p2 = new google_maps.LatLng(0.0, 180.0);
 
             expect(distance.bearing(p1, p2), equals(-90));
             expect(normalizeBearing(distance.bearing(p1, p2)), equals(270));
@@ -133,7 +134,7 @@ main() {
             final num distanceInMeter = (EARTH_RADIUS * PI / 2).round();
             //print("Dist $distanceInMeter");
 
-            final p1 = new LatLng(0.0, 0.0);
+            final p1 = new google_maps.LatLng(0.0, 0.0);
             final p2 = distance.offset(p1, distanceInMeter.round(), 0);
 
             //print(p2);
@@ -147,7 +148,7 @@ main() {
             final Distance distance = const Distance();
             final num distanceInMeter = (EARTH_RADIUS * PI / 4).round();
 
-            final p1 = new LatLng(0.0, 0.0);
+            final p1 = new google_maps.LatLng(0.0, 0.0);
             final p2 = distance.offset(p1, distanceInMeter, 180);
 
             // print(p2.round());
@@ -161,7 +162,7 @@ main() {
             final Distance distance = const Distance();
             final num distanceInMeter = (EARTH_RADIUS * PI / 2).round();
 
-            final p1 = new LatLng(0.0, 0.0);
+            final p1 = new google_maps.LatLng(0.0, 0.0);
             final p2 = distance.offset(p1, distanceInMeter, 180);
 
             expect(p2.latitude.round(), equals(-90));
@@ -172,7 +173,7 @@ main() {
             final Distance distance = const Distance();
             final num distanceInMeter = (EARTH_RADIUS * PI / 4).round();
 
-            final p1 = new LatLng(0.0, 0.0);
+            final p1 = new google_maps.LatLng(0.0, 0.0);
             final p2 = distance.offset(p1, distanceInMeter, 90);
 
             expect(p2.latitude.round(), equals(0));

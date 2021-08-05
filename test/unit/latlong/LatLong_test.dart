@@ -19,7 +19,8 @@
 
 import 'package:test/test.dart';
 import 'package:latlong/latlong.dart';
-// import 'package:logging/logging.dart';
+import 'package:logging/logging.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' as google_maps;
 
 // Browser
 // import "package:console_log_handler/console_log_handler.dart";
@@ -29,21 +30,21 @@ import 'package:latlong/latlong.dart';
 
 
 main() {
-    // final Logger _logger = new Logger("test.LatLng");
+    // final Logger _logger = new Logger("test.google_maps.LatLng");
     // configLogging();
 
     group('A group of tests', () {
         setUp(() {});
 
         test('> Range', () {
-            expect(() => new LatLng(-80.0, 0.0), returnsNormally);
-            expect(() => new LatLng(-100.0, 0.0), throwsArgumentError);
-            expect(() => new LatLng(80.0, 0.0), returnsNormally);
-            expect(() => new LatLng(100.0, 0.0), throwsArgumentError);
-            expect(() => new LatLng(0.0, -170.0), returnsNormally);
-            expect(() => new LatLng(0.0, -190.0), throwsArgumentError);
-            expect(() => new LatLng(0.0, 170.0), returnsNormally);
-            expect(() => new LatLng(0.0, 190.0), throwsArgumentError);
+            expect(() => new google_maps.LatLng(-80.0, 0.0), returnsNormally);
+            expect(() => new google_maps.LatLng(-100.0, 0.0), throwsArgumentError);
+            expect(() => new google_maps.LatLng(80.0, 0.0), returnsNormally);
+            expect(() => new google_maps.LatLng(100.0, 0.0), throwsArgumentError);
+            expect(() => new google_maps.LatLng(0.0, -170.0), returnsNormally);
+            expect(() => new google_maps.LatLng(0.0, -190.0), throwsArgumentError);
+            expect(() => new google_maps.LatLng(0.0, 170.0), returnsNormally);
+            expect(() => new google_maps.LatLng(0.0, 190.0), throwsArgumentError);
         }); // end of 'Range' test
 
         test('> Rad', () {
@@ -54,14 +55,14 @@ main() {
         }); // end of 'Rad' test
 
         test('> toString', () {
-            expect((new LatLng(-80.0, 0.0)).toString(), "LatLng(latitude:-80.0, longitude:0.0)");
-            expect((new LatLng(-80.123456, 0.0)).toString(), "LatLng(latitude:-80.123456, longitude:0.0)");
+            expect((new google_maps.LatLng(-80.0, 0.0)).toString(), "google_maps.LatLng(latitude:-80.0, longitude:0.0)");
+            expect((new google_maps.LatLng(-80.123456, 0.0)).toString(), "google_maps.LatLng(latitude:-80.123456, longitude:0.0)");
         }); // end of 'toString' test
 
         test('> equal', () {
-            expect(new LatLng(-80.0, 0.0), new LatLng(-80.0, 0.0));
-            expect(new LatLng(-80.0, 0.0), isNot(new LatLng(-80.1, 0.0)));
-            expect(new LatLng(-80.0, 0.0), isNot(new LatLng(0.0, 80.0)));
+            expect(new google_maps.LatLng(-80.0, 0.0), new google_maps.LatLng(-80.0, 0.0));
+            expect(new google_maps.LatLng(-80.0, 0.0), isNot(new google_maps.LatLng(-80.1, 0.0)));
+            expect(new google_maps.LatLng(-80.0, 0.0), isNot(new google_maps.LatLng(0.0, 80.0)));
         }); // end of 'equal' test
 
     });
